@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>สคริปต์นำเสนอ NU Report</title>
+<style>
+  @page { size: A4; margin: 13mm 14mm 14mm 14mm; }
+  :root { --orange: #F37021; --orange-light: #FFE9DB; --grey: #4D4D4F; --grey-light: #F2F2F2; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Leelawadee UI", "Sarabun", "Tahoma", sans-serif;
+    font-size: 10.8pt; line-height: 1.5; color: #222; margin: 0; background: #fff;
+  }
+  h1 { color: var(--grey); font-size: 24pt; margin: 0 0 4px; }
+  h2 {
+    color: #fff; background: var(--grey); font-size: 15pt; padding: 6px 12px;
+    border-left: 8px solid var(--orange); margin: 0 0 10px; break-after: avoid;
+  }
+  h3 { color: var(--orange); font-size: 12.5pt; margin: 14px 0 6px; break-after: avoid; }
+  p { margin: 4px 0 8px; }
+  .sub { color: var(--grey); font-size: 12pt; margin-bottom: 14px; }
+  .page { break-before: page; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 12px; font-size: 10.5pt; }
+  th, td { border: 1px solid #ccc; padding: 5px 8px; vertical-align: top; text-align: left; }
+  th { background: var(--grey-light); color: var(--grey); }
+  tr { break-inside: avoid; }
+  .say {
+    background: var(--orange-light); border-left: 4px solid var(--orange);
+    padding: 8px 12px; margin: 6px 0 10px; border-radius: 4px; break-inside: avoid;
+  }
+  .say::before { content: "พูด"; display: inline-block; background: var(--orange); color: #fff;
+    font-size: 9pt; font-weight: bold; padding: 0 6px; border-radius: 3px; margin-right: 6px; }
+  .do {
+    background: var(--grey-light); border-left: 4px solid var(--grey);
+    padding: 6px 12px; margin: 6px 0; border-radius: 4px; break-inside: avoid;
+  }
+  .do::before { content: "กด"; display: inline-block; background: var(--grey); color: #fff;
+    font-size: 9pt; font-weight: bold; padding: 0 6px; border-radius: 3px; margin-right: 6px; }
+  .code { background: #fff; border: 1px dashed #bbb; padding: 6px 12px; margin: 6px 0 10px;
+    border-radius: 4px; break-inside: avoid; font-size: 10.5pt; }
+  .code::before { content: "เปิดโค้ด"; display: inline-block; background: #fff; color: var(--grey);
+    border: 1px solid var(--grey); font-size: 9pt; font-weight: bold; padding: 0 6px;
+    border-radius: 3px; margin-right: 6px; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+    background: #f4f4f4; padding: 0 3px; border-radius: 3px; }
+  .note { font-size: 10pt; color: #666; }
+  .warn { border: 2px solid var(--orange); padding: 8px 12px; border-radius: 6px; margin: 10px 0; break-inside: avoid; }
+  .qa dt { font-weight: bold; color: var(--grey); margin-top: 8px; break-after: avoid; }
+  .qa dt::before { content: "ถาม: "; color: var(--orange); }
+  .qa dd { margin: 2px 0 6px 0; padding-left: 12px; border-left: 2px solid #ddd; break-inside: avoid; }
+  .live { margin: 8px 0 4px; padding: 6px 10px; background:#fff8e6; border-radius:4px; color:#555; }
+  .live::before { content:"⚡ "; }
+  .qa dd::before { content: "ตอบ: "; font-weight: bold; color: var(--grey); }
+  .time { float: right; background: var(--orange); color: #fff; font-size: 10pt; padding: 1px 8px; border-radius: 10px; }
+  ul, ol { margin: 4px 0 8px; padding-left: 22px; }
+  li { margin: 2px 0; }
+  .tag { display:inline-block; font-size:9pt; font-weight:bold; padding:0 6px; border-radius:3px; }
+  .t-say { background: var(--orange); color:#fff; }
+  .t-do { background: var(--grey); color:#fff; }
+  .t-code { border:1px solid var(--grey); color: var(--grey); }
+  .ph { background: #fff3a8; padding: 0 3px; }
+</style>
+</head>
+<body>
+
+<h1>สคริปต์นำเสนอ NU Report</h1>
+<div class="sub">ระบบแจ้งปัญหา · โครงงานกลุ่ม MAD 1/2569 · นำเสนอ เสาร์ 24 ต.ค. 2569</div>
+
+<div class="warn">
+  <b>วิธีใช้เอกสารนี้</b>
+  <ul>
+    <li><span class="tag t-say">พูด</span> คือคำพูด ปรับเป็นภาษาของตัวเองได้ ไม่ต้องท่องคำต่อคำ (อาจารย์ฟังออกว่าท่อง)</li>
+    <li><span class="tag t-do">กด</span> คือสิ่งที่ต้องกดในแอปตอนนั้น · <span class="tag t-code">เปิดโค้ด</span> คือไฟล์ที่ควรเปิดให้อาจารย์ดู</li>
+    <li>ช่องที่<span class="ph">ไฮไลต์เหลือง</span>ต้องกรอกเอง เช่น ชื่อหน่วยงานผู้ใช้ และคำพูดจริงจากการพบผู้ใช้</li>
+    <li>เกณฑ์ B2 กำหนดว่า <b>เจ้าของต้องเป็นคนกดสาธิตเอง</b> ส่งเครื่องต่อให้กันตอนเปลี่ยนคน</li>
+  </ul>
+</div>
+
+<h3>ลำดับและเวลา (รวมไม่เกิน 35 นาที)</h3>
+<table>
+  <tr><th style="width:18%">ช่วง</th><th style="width:22%">ผู้พูด</th><th>เนื้อหา</th><th style="width:12%">เวลา</th></tr>
+  <tr><td>1. Intro</td><td>สมาชิกคนที่ 1 <span class="ph">รหัส........</span></td><td>โจทย์ ผู้ใช้ R1–R6 ภาพรวมแอปและเทคนิค</td><td>≤ 5 นาที</td></tr>
+  <tr><td>2. Demo</td><td>สมาชิกคนที่ 2 <span class="ph">รหัส........</span></td><td>R1 แจ้งปัญหาพร้อมรูป · R6 ประชาสัมพันธ์</td><td>≤ 5 + 2</td></tr>
+  <tr><td>3. Demo</td><td>สมาชิกคนที่ 1</td><td>R2 ค้นหา/กรอง · โครงสร้างฐานข้อมูล</td><td>≤ 5 + 2</td></tr>
+  <tr><td>4. Demo</td><td>สมาชิกคนที่ 3 <span class="ph">รหัส........</span></td><td>สมัคร/ล็อกอิน · R3 แอดมินเปลี่ยนสถานะ</td><td>≤ 5 + 2</td></tr>
+  <tr><td>5. Demo</td><td>สมาชิกคนที่ 4 <span class="ph">รหัส........</span></td><td>R4 แจ้งความคืบหน้า · R5 สรุปผลและ CSV · การทดสอบ</td><td>≤ 5 + 2</td></tr>
+  <tr><td>6. ปิด</td><td>สมาชิกคนที่ 1</td><td>สรุปสั้นๆ</td><td>≤ 1 นาที</td></tr>
+</table>
+<p class="note">ลำดับ demo เรียงตามเส้นทางของข้อมูล: แจ้งเรื่อง → ค้นหา → แอดมินจัดการ → ผู้แจ้งเห็นผล → สรุปผล ทำให้เรื่องเล่าต่อกันได้ และใช้ข้อมูลที่คนก่อนหน้าสร้างไว้</p>
+
+<h3>เตรียมก่อนวันนำเสนอ (ทำคืนวันศุกร์)</h3>
+<ul>
+  <li>ลบแอปออกแล้วติดตั้งใหม่ ให้ได้ข้อมูลตั้งต้นที่สะอาด (เรื่องตัวอย่าง 4 เรื่อง + ประกาศต้อนรับ 1 อัน)</li>
+  <li>บัญชีทดสอบ: <code>admin</code> / <code>admin123</code> (เจ้าหน้าที่) · <code>user</code> / <code>user123</code> (ผู้แจ้ง)</li>
+  <li>มือถือ: ชาร์จเต็ม เปิดอนุญาตกล้องไว้แล้ว มีรูปในคลังรูปสำรองไว้เผื่อกล้องมีปัญหา</li>
+  <li>โน้ตบุ๊ก: เปิดโปรเจกต์ไว้ใน VS Code โดยเปิดไฟล์ของแต่ละคนเป็นแท็บเรียงไว้</li>
+  <li>เปิด <code>flutter test</code> ไว้ในเทอร์มินัล (สมาชิกคนที่ 4 ใช้)</li>
+  <li>ซ้อมจับเวลาจริงอย่างน้อย 1 รอบ แล้วให้เพื่อนในกลุ่มลองถามคำถามท้ายแต่ละส่วนกันเอง</li>
+</ul>
+
+<!-- ============================ INTRO ============================ -->
+<div class="page"></div>
+<h2>1. Intro — สมาชิกคนที่ 1 <span class="time">≤ 5 นาที</span></h2>
+
+<h3>เปิดตัว (30 วินาที)</h3>
+<div class="say">สวัสดีครับ/ค่ะ กลุ่มเราทำแอป <b>NU Report</b> ระบบแจ้งปัญหาภายในอาคาร สมาชิกมี 4 คน รหัส <span class="ph">........</span>, <span class="ph">........</span>, <span class="ph">........</span> และ <span class="ph">........</span> เดี๋ยวขอเล่าโจทย์และภาพรวมก่อน แล้วแต่ละคนจะสาธิตส่วนที่ตัวเองทำครับ/ค่ะ</div>
+
+<h3>โจทย์และผู้ใช้ (1 นาที 30 วินาที)</h3>
+<div class="say">ผู้ใช้ของเราคือ <span class="ph">ชื่อ-ตำแหน่ง ผู้ใช้จริง</span> จาก <span class="ph">หน่วยงาน</span> ปัญหาตอนนี้คือ <span class="ph">วิธีแจ้งปัญหาปัจจุบัน เช่น แจ้งปากเปล่า/โทร/กลุ่ม LINE</span> ทำให้ <span class="ph">ผลเสียที่ผู้ใช้เล่า เช่น เรื่องตกหล่น ไม่รู้ว่าซ่อมหรือยัง ปลายเดือนต้องนับเอง</span></div>
+<div class="say">เราไปพบผู้ใช้ <span class="ph">N</span> ครั้ง ครั้งที่ <span class="ph">...</span> วันที่ <span class="ph">...</span> ผู้ใช้ขอให้ <span class="ph">สิ่งที่ผู้ใช้ขอ</span> เราจึงแก้เป็น <span class="ph">สิ่งที่เปลี่ยนจริง</span> รายละเอียดอยู่ใน change log ของฟอร์ม 3</div>
+<p class="note">ส่วนนี้ได้คะแนน A1 ตรงที่สุด ใช้คำพูดจริงจากฟอร์ม 2</p>
+
+<h3>ความต้องการ R1–R6 (1 นาที 30 วินาที)</h3>
+<div class="say">จากที่คุยกับผู้ใช้ เราได้ความต้องการ 6 ข้อ แต่ละข้อมีเกณฑ์ว่ากดอะไรแล้วต้องเห็นอะไร</div>
+<table>
+  <tr><th style="width:8%">รหัส</th><th>ความต้องการ</th><th style="width:22%">ผู้รับผิดชอบ</th></tr>
+  <tr><td>R1</td><td>แจ้งปัญหาพร้อมรูปถ่ายและสถานที่</td><td>คนที่ 2</td></tr>
+  <tr><td>R2</td><td>ค้นหาและกรองเรื่องที่เคยแจ้ง</td><td>คนที่ 1</td></tr>
+  <tr><td>R3</td><td>เจ้าหน้าที่เปลี่ยนสถานะพร้อมหมายเหตุ</td><td>คนที่ 3</td></tr>
+  <tr><td>R4</td><td>ผู้แจ้งรู้ทันทีเมื่อเรื่องมีความคืบหน้า</td><td>คนที่ 4</td></tr>
+  <tr><td>R5</td><td>สรุปผลรายเดือนเป็นกราฟและส่งออก CSV</td><td>คนที่ 4</td></tr>
+  <tr><td>R6</td><td>เจ้าหน้าที่ประกาศข่าวให้ผู้ใช้ทุกคน</td><td>คนที่ 2</td></tr>
+</table>
+
+<h3>ภาพรวมเทคนิค (1 นาที)</h3>
+<div class="say">แอปทำด้วย Flutter ข้อมูลเก็บในเครื่องด้วย SQLite ผ่าน package <code>sqflite</code> เพราะต้องค้นหาและกรองตามหลายเงื่อนไข และใช้ได้แม้ไม่มีอินเทอร์เน็ต</div>
+<div class="say">สถานะของแอปจัดการด้วย <code>Provider</code> มีสองตัว ตัวแรก <code>AuthProvider</code> เก็บว่าใครล็อกอินอยู่ ตัวที่สอง <code>ReportProvider</code> เก็บรายการเรื่อง พอข้อมูลเปลี่ยน ทุกหน้าที่ใช้ข้อมูลนั้นจะอัปเดตตามทันที</div>
+<div class="say">งานที่ใช้เวลา เช่น อ่านฐานข้อมูลหรือเปิดกล้อง เราแสดงสถานะกำลังโหลดและปิดปุ่มไม่ให้กดซ้ำ ถ้าเกิดข้อผิดพลาดจะขึ้น SnackBar สีแดงพร้อมปุ่ม "ลองใหม่" และใน repository ไม่มีคีย์หรือรหัสผ่านจริง มีแค่บัญชีทดสอบ</div>
+
+<div class="do">ปิดท้ายว่า "ต่อไปคนที่ 2 จะสาธิตการแจ้งปัญหา" แล้วล็อกอิน <code>user</code> / <code>user123</code> ส่งเครื่องให้คนที่ 2</div>
+
+<!-- ============================ MEMBER 2 ============================ -->
+<div class="page"></div>
+<h2>2. สมาชิกคนที่ 2 — R1 แจ้งปัญหา · R6 ประชาสัมพันธ์ <span class="time">≤ 5 นาที</span></h2>
+
+<h3>R1 แจ้งปัญหา (2 นาที 30 วินาที)</h3>
+<div class="say">ส่วนของผมคือหน้าแจ้งปัญหา ธีมของแอป และหน้าประชาสัมพันธ์ เริ่มจากผู้ใช้กดปุ่ม "แจ้งปัญหา" ที่มุมขวาล่าง</div>
+<div class="do">กดปุ่ม "แจ้งปัญหา" → กด "ส่งเรื่อง" ทันทีโดยไม่กรอกอะไร</div>
+<div class="say">ถ้าไม่กรอก ฟอร์มจะไม่ยอมส่ง และบอกว่าช่องไหนขาด ใช้ <code>Form</code> กับ <code>validator</code> ของแต่ละช่อง รายละเอียดต้องยาวอย่างน้อย 10 ตัวอักษร เพื่อให้เจ้าหน้าที่ได้ข้อมูลพอ</div>
+<div class="do">แตะกรอบรูป → "ถ่ายรูป" → ถ่าย → กรอกหัวข้อ "แอร์ไม่เย็น" · หมวด "ไฟฟ้า" · สถานที่ "SC2 ห้อง 301" · รายละเอียด → "ส่งเรื่อง"</div>
+<div class="say">ระหว่างบันทึก ปุ่มเปลี่ยนเป็น "กำลังบันทึก..." และกดซ้ำไม่ได้ ป้องกันเรื่องซ้ำ พอสำเร็จจะเด้งกลับมาหน้ารายการ และเห็นเรื่องใหม่บนสุดด้วยสถานะ "รอดำเนินการ" ทันที</div>
+<div class="code"><code>lib/screens/create_report_screen.dart</code> ฟังก์ชัน <code>_submit()</code> และ <code>lib/services/image_service.dart</code></div>
+<div class="say">จุดสำคัญคือรูป package <code>image_picker</code> คืนไฟล์ที่อยู่ในโฟลเดอร์ cache ซึ่งระบบลบทิ้งได้ เราเลย copy รูปไปเก็บในโฟลเดอร์ของแอปเองก่อน แล้วค่อยเก็บ path ลงฐานข้อมูล รูปจะไม่หายภายหลัง และย่อรูปเหลือกว้าง 1280 px เพื่อไม่ให้ไฟล์ใหญ่</div>
+
+<h3>R6 ประชาสัมพันธ์ (2 นาที)</h3>
+<div class="do">ล็อกเอาต์ → ล็อกอิน <code>admin</code> / <code>admin123</code> → แท็บ "ประชาสัมพันธ์" → "ประกาศใหม่" → หัวข้อ "ปิดน้ำประปา ส. 25 ต.ค." · เนื้อหา · ติ๊ก "ปักหมุดไว้บนสุด" → "เผยแพร่"</div>
+<div class="say">เจ้าหน้าที่ประกาศข่าวได้ ประกาศที่ปักหมุดจะอยู่บนสุดและมีกรอบสีแสด ใช้ SQL <code>ORDER BY pinned DESC, created_at DESC</code> คือเรียงที่ปักหมุดก่อน แล้วตามด้วยใหม่สุด</div>
+<div class="do">กด ⋮ ที่ประกาศต้อนรับ → "เลิกปักหมุด" ให้เห็นว่าลำดับเปลี่ยน → ล็อกเอาต์ → ล็อกอิน <code>user</code> → แท็บ "ประชาสัมพันธ์"</div>
+<div class="say">ฝั่งผู้ใช้เห็นประกาศเดียวกัน แต่ไม่มีปุ่มสร้าง ลบ หรือปักหมุด เพราะหน้าจอเช็ก <code>isAdmin</code> จาก <code>AuthProvider</code></div>
+
+<h3>ธีม (20 วินาที)</h3>
+<div class="say">สีของแอปเป็นเทา-แสดตามสีมหาวิทยาลัย รวมไว้ที่ <code>lib/theme/app_theme.dart</code> ไฟล์เดียว หน้าอื่นเรียกผ่าน <code>Theme.of(context)</code> ถ้าจะเปลี่ยนสีก็แก้ที่เดียว</div>
+<div class="do">ส่งเครื่องให้คนที่ 1 โดยล็อกอิน <code>user</code> ค้างไว้</div>
+
+<h3>คำถามที่อาจโดน</h3>
+<dl class="qa">
+  <dt>ถ้ากดส่ง 2 ครั้งเร็วๆ จะได้ 2 เรื่องไหม</dt>
+  <dd>ไม่ได้ ตัวแปร <code>_saving</code> เป็น true ตั้งแต่เริ่มบันทึก ปุ่มจะได้ <code>onPressed: null</code> จึงกดไม่ได้จนกว่าจะเสร็จ และ <code>finally</code> คืนค่ากลับแม้บันทึกล้มเหลว</dd>
+  <dt>ถ้าผู้ใช้ไม่อนุญาตกล้องจะเกิดอะไร</dt>
+  <dd><code>_pickImage</code> ครอบด้วย try/catch ถ้า error จะขึ้น SnackBar สีแดงว่าเปิดกล้องไม่ได้ ฟอร์มยังอยู่ ส่งเรื่องโดยไม่แนบรูปได้ เพราะรูปไม่บังคับ</dd>
+  <dt><code>mounted</code> ที่เช็กหลัง await คืออะไร</dt>
+  <dd>ระหว่างรอบันทึก ผู้ใช้อาจกดย้อนกลับไปแล้ว หน้าจอถูกทำลาย ถ้าเรียก <code>context</code> ต่อจะ error จึงเช็ก <code>mounted</code> ก่อนใช้ context ทุกครั้งหลัง await</dd>
+  <dt>ทำไมต้องใส่ <code>heroTag</code> ที่ปุ่มประกาศใหม่</dt>
+  <dd>Flutter ใช้ heroTag ทำอนิเมชันตอนเปลี่ยนหน้า ถ้ามีปุ่มลอยสองปุ่มที่ tag ซ้ำกันในเส้นทางเดียวกันจะ error จึงตั้ง tag แยกให้ไม่ชนกัน</dd>
+  <p class="note live">คำถามเฉพาะหน้า: "เปลี่ยนให้รูปเป็นสิ่งที่บังคับ" → เพิ่มเช็ก <code>if (_imagePath == null)</code> ใน <code>_submit()</code> แล้ว <code>showError</code> และ return</p>
+</dl>
+
+<!-- ============================ MEMBER 1 ============================ -->
+<div class="page"></div>
+<h2>3. สมาชิกคนที่ 1 — R2 ค้นหา · ฐานข้อมูล <span class="time">≤ 5 นาที</span></h2>
+
+<h3>R2 ค้นหาและกรอง (2 นาที)</h3>
+<div class="say">ส่วนของผมคือฐานข้อมูลและการค้นหา เมื่อเรื่องเยอะขึ้น ผู้ใช้ต้องหาเรื่องที่เคยแจ้งได้เร็ว</div>
+<div class="do">พิมพ์ "น้ำ" ในช่องค้นหา → รอให้รายการเหลือ "ก๊อกน้ำรั่ว" → กด ✕ ล้าง</div>
+<div class="say">ค้นทั้งหัวข้อ รายละเอียด และสถานที่พร้อมกัน แอปรอให้หยุดพิมพ์ 400 มิลลิวินาทีค่อยค้น เรียกว่า debounce จะได้ไม่ query ฐานข้อมูลทุกครั้งที่กดตัวอักษร</div>
+<div class="do">กดชิป "รอดำเนินการ" → เลือกหมวด "ไฟฟ้า" → กด "ทั้งหมด" และ "ทุกหมวด" คืน</div>
+<div class="say">กรองตามสถานะและหมวดหมู่ซ้อนกับคำค้นได้ ดึงลงเพื่อโหลดใหม่ก็ได้</div>
+
+<h3>โครงสร้างฐานข้อมูล (2 นาที 30 วินาที)</h3>
+<div class="code"><code>lib/db/database_helper.dart</code> ฟังก์ชัน <code>_onCreate</code></div>
+<div class="say">มี 5 ตาราง <code>users</code>, <code>categories</code>, <code>reports</code>, <code>comments</code> สำหรับประวัติการดำเนินการ และ <code>announcements</code> สำหรับประชาสัมพันธ์ ตาราง reports อ้างถึง users และ categories ด้วย foreign key ต้องสั่ง <code>PRAGMA foreign_keys = ON</code> ทุกครั้งที่เปิด เพราะ SQLite ปิดไว้เป็นค่าเริ่มต้น</div>
+<div class="say">มี index ที่ <code>user_id</code> และ <code>status</code> เพราะเป็นสองคอลัมน์ที่ค้นบ่อยที่สุด และฐานข้อมูลเปิดแบบ Singleton คือทั้งแอปมีตัวเดียว</div>
+<div class="code"><code>lib/db/report_dao.dart</code> ฟังก์ชัน <code>search()</code></div>
+<div class="say">ฟังก์ชันนี้ต่อเงื่อนไข WHERE ตามที่ผู้ใช้เลือก ถ้าไม่ได้เลือกสถานะก็ไม่ใส่เงื่อนไขนั้น ค่าที่ผู้ใช้พิมพ์ส่งผ่านเครื่องหมาย <code>?</code> ไม่ต่อลง SQL ตรงๆ จึงกัน SQL injection ได้</div>
+<div class="say">และใช้ JOIN ดึงชื่อหมวดหมู่และชื่อผู้แจ้งมาใน query เดียว ไม่ต้องยิงหลายรอบ</div>
+<div class="do">ส่งเครื่องให้คนที่ 3</div>
+
+<h3>คำถามที่อาจโดน</h3>
+<dl class="qa">
+  <dt>ทำไมใช้ SQLite ไม่ใช้ไฟล์ JSON หรือ SharedPreferences</dt>
+  <dd>ต้องค้นหาตามคำ กรองตามสถานะและหมวด และนับสถิติด้วย GROUP BY ถ้าใช้ JSON ต้องโหลดทั้งไฟล์มาวนเองทุกครั้ง SQLite ทำในคำสั่งเดียวและมี index</dd>
+  <dt>ถ้าจะเพิ่มคอลัมน์ priority ต้องแก้อะไรบ้าง</dt>
+  <dd>เพิ่มใน CREATE TABLE, เพิ่มฟิลด์ใน <code>Report</code> ทั้ง <code>fromMap</code>/<code>toMap</code>, เพิ่ม <code>_dbVersion</code> เป็น 3 และเขียน <code>onUpgrade</code> ให้ <code>ALTER TABLE reports ADD COLUMN priority ...</code> แบบเดียวกับที่เราทำตอนเพิ่มตาราง announcements ในเวอร์ชัน 2 ข้อมูลเดิมในเครื่องผู้ใช้จะไม่หาย</dd>
+  <dt>ทำไมเก็บวันที่เป็น string</dt>
+  <dd>SQLite ไม่มีชนิดวันที่ เราเก็บเป็นรูปแบบ ISO-8601 เช่น 2026-10-24T09:00 ซึ่งเรียงตามตัวอักษรแล้วตรงกับเรียงตามเวลา จึงใช้ <code>&gt;=</code> และ <code>&lt;</code> หาช่วงเดือนได้</dd>
+  <dt>ทำไม <code>_db</code> เก็บเป็น Future ไม่ใช่ Database</dt>
+  <dd>ตอนเปิดแอปครั้งแรก มีสองส่วนเรียกฐานข้อมูลพร้อมกัน ถ้าเก็บ Database จะเปิดสองครั้งระหว่างที่ยังสร้างตารางไม่เสร็จ (เคยเป็นบั๊ก รายการว่างตอนเปิดครั้งแรก) พอเก็บ Future ทุกคนรอตัวเดียวกัน</dd>
+  <dt><code>notifyListeners()</code> ทำอะไร</dt>
+  <dd>บอกทุก widget ที่ <code>watch</code> provider นี้ว่าข้อมูลเปลี่ยนแล้ว ให้ build ใหม่ หน้ารายการจึงอัปเดตเองหลังค้นหาหรือเพิ่มเรื่อง</dd>
+</dl>
+
+<!-- ============================ MEMBER 3 ============================ -->
+<div class="page"></div>
+<h2>4. สมาชิกคนที่ 3 — สมาชิก · R3 แอดมินจัดการเรื่อง <span class="time">≤ 5 นาที</span></h2>
+
+<h3>สมัครและล็อกอิน (1 นาที 30 วินาที)</h3>
+<div class="say">ส่วนของผมคือระบบสมาชิกและหน้าที่เจ้าหน้าที่ใช้จัดการเรื่อง</div>
+<div class="do">ล็อกเอาต์ → "สมัครสมาชิก" → ชื่อ "ab" · รหัส "123" · ยืนยัน "999" → กด "สมัครสมาชิก"</div>
+<div class="say">ชื่อต้องยาว 3 ตัวขึ้นไปและใช้ได้เฉพาะ a-z ตัวเลข และขีดล่าง รหัสอย่างน้อย 6 ตัว และยืนยันต้องตรงกัน</div>
+<div class="do">ย้อนกลับ → ล็อกอิน <code>admin</code> รหัสผิด "wrong" → เห็นข้อความ → ล็อกอิน <code>admin</code> / <code>admin123</code></div>
+<div class="say">ถ้าผิด ระบบบอกแค่ว่า "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง" ไม่บอกว่าผิดที่ชื่อหรือรหัส คนอื่นจะได้เดาไม่ได้ว่ามีชื่อนี้ในระบบ</div>
+<div class="code"><code>lib/services/password_hasher.dart</code> และ <code>lib/providers/auth_provider.dart</code></div>
+<div class="say">รหัสผ่านไม่ได้เก็บตรงๆ เราแปลงเป็น SHA-256 พร้อม salt ก่อนเก็บ ตอนล็อกอินก็ hash รหัสที่พิมพ์แล้วเทียบกับค่าที่เก็บ ถ้าไฟล์ฐานข้อมูลหลุดก็อ่านรหัสจริงไม่ได้</div>
+
+<h3>R3 เปลี่ยนสถานะ (2 นาที 30 วินาที)</h3>
+<div class="do">แท็บ "เรื่องทั้งหมด" → เปิด "แอร์ไม่เย็น" ที่คนที่ 2 สร้าง → "เปลี่ยนสถานะ"</div>
+<div class="say">แอดมินเห็นเรื่องของทุกคน พร้อมชื่อผู้แจ้ง ปุ่ม "บันทึก" กดไม่ได้จนกว่าจะเลือกสถานะที่ต่างจากเดิม</div>
+<div class="do">เลือก "กำลังดำเนินการ" → หมายเหตุ "ส่งช่างไปตรวจพรุ่งนี้" → "บันทึก"</div>
+<div class="say">สถานะเปลี่ยนทันที และมีบันทึกในส่วน "ความคืบหน้า" ว่าใครเปลี่ยนเมื่อไร พร้อมหมายเหตุ</div>
+<div class="code"><code>lib/db/report_dao.dart</code> ฟังก์ชัน <code>updateStatus()</code> (คนที่ 1 เขียน แต่หน้าจอของผมเรียกใช้)</div>
+<div class="say">การเปลี่ยนสถานะกับการบันทึกประวัติทำใน transaction เดียว สำเร็จพร้อมกันหรือไม่สำเร็จทั้งคู่ จะไม่มีกรณีสถานะเปลี่ยนแต่ประวัติหาย</div>
+<div class="do">ส่งเครื่องให้คนที่ 4 โดยล็อกอิน <code>admin</code> ค้างไว้</div>
+
+<h3>คำถามที่อาจโดน</h3>
+<dl class="qa">
+  <dt>ล็อกอินสำเร็จแล้วเปลี่ยนไปหน้าแรกได้อย่างไร ไม่เห็นมี Navigator.push</dt>
+  <dd>ใน <code>main.dart</code> ใช้ <code>Consumer&lt;AuthProvider&gt;</code> ถ้า <code>isLoggedIn</code> เป็นจริงแสดง <code>HomeScreen</code> ไม่งั้นแสดง <code>LoginScreen</code> พอล็อกอินแล้วเรียก <code>notifyListeners()</code> หน้าจะสลับเอง ล็อกเอาต์ก็เช่นกัน</dd>
+  <dt>SHA-256 ปลอดภัยพอไหม</dt>
+  <dd>พอสำหรับแอปที่เก็บข้อมูลในเครื่อง ถ้าเป็นระบบจริงที่มี server ควรใช้ bcrypt หรือ argon2 ที่ช้าโดยตั้งใจ และใช้ salt แยกต่อผู้ใช้</dd>
+  <dt><code>FutureBuilder</code> ในหน้ารายละเอียดทำงานอย่างไร</dt>
+  <dd>รับ Future ที่โหลดเรื่องกับประวัติ ระหว่างรอแสดงวงกลมหมุน ถ้า error แสดงข้อความพร้อมปุ่มลองใหม่ ถ้าได้ข้อมูลแสดงเนื้อหา โหลดเรื่องกับประวัติพร้อมกันด้วย <code>Future.wait</code></dd>
+  <dt>ทำไมอ่าน <code>context.read</code> ก่อน await ใน <code>_load()</code></dt>
+  <dd>หลัง await หน้าจออาจถูกปิดไปแล้ว การใช้ context หลังจากนั้นไม่ปลอดภัย จึงเก็บ provider ไว้ในตัวแปรก่อน</dd>
+  <p class="note live">คำถามเฉพาะหน้า: "อยากให้เปลี่ยนสถานะได้โดยไม่ต้องใส่หมายเหตุไหม" → ตอนนี้หมายเหตุไม่บังคับอยู่แล้ว ถ้าจะบังคับ เพิ่ม <code>_note.text.trim().isNotEmpty</code> ในเงื่อนไข <code>changed</code></p>
+</dl>
+
+<!-- ============================ MEMBER 4 ============================ -->
+<div class="page"></div>
+<h2>5. สมาชิกคนที่ 4 — R4 ความคืบหน้า · R5 สรุปผล · ทดสอบ <span class="time">≤ 5 นาที</span></h2>
+
+<h3>R5 สรุปผลและส่งออก (2 นาที)</h3>
+<div class="say">ส่วนของผมคือการแจ้งความคืบหน้าให้ผู้แจ้ง หน้าสรุปผล และการทดสอบ เริ่มจากฝั่งเจ้าหน้าที่</div>
+<div class="do">แท็บ "สรุปผล"</div>
+<div class="say">ปลายเดือนเจ้าหน้าที่ไม่ต้องนับเอง กราฟวงกลมแยกตามสถานะ และกราฟแท่งแยกตามหมวดหมู่ ตัวเลขมาจาก SQL <code>GROUP BY</code> ใน <code>countByStatus</code> และ <code>countByCategory</code> ใช้ package <code>fl_chart</code> วาด</div>
+<div class="do">กด ‹ ไปเดือนก่อน → เห็น "ไม่มีข้อมูลในเดือนนี้" → กด › กลับ → "ส่งออก CSV เดือนนี้" → เลือกแชร์ไป Drive/LINE แล้วเปิดใน Excel/Sheets</div>
+<div class="say">ไฟล์ CSV เปิดใน Excel แล้วภาษาไทยไม่เพี้ยน เพราะใส่ BOM ไว้หน้าไฟล์ และถ้าหัวข้อมีเครื่องหมายจุลภาคหรือฟันหนู เราครอบด้วยฟันหนูตามมาตรฐาน CSV คอลัมน์จะไม่เลื่อน</div>
+
+<h3>R4 แจ้งความคืบหน้า (1 นาที 30 วินาที)</h3>
+<div class="do">ล็อกเอาต์ → ล็อกอิน <code>user</code> / <code>user123</code></div>
+<div class="say">หลังแอดมินเปลี่ยนสถานะตอนเมื่อกี้ ผู้แจ้งเห็นแถบสีแสด "มี 1 เรื่องที่มีความคืบหน้าใหม่" ตั้งแต่เปิดแอป และเรื่องนั้นมีจุดสีแสด</div>
+<div class="do">เปิดเรื่อง "แอร์ไม่เย็น" → เห็นหมายเหตุของแอดมิน → ย้อนกลับ → แถบและจุดหายไป</div>
+<div class="code"><code>lib/widgets/update_banner.dart</code> และคอลัมน์ <code>seen_by_owner</code></div>
+<div class="say">กลไกคือคอลัมน์ <code>seen_by_owner</code> ในตาราง reports แอดมินเปลี่ยนสถานะเมื่อไร ค่าจะเป็น 0 พอเจ้าของเปิดดูก็เป็น 1 แถบนับจำนวนเรื่องที่เป็น 0 ของผู้ใช้คนนั้น</div>
+
+<h3>การทดสอบ (1 นาที)</h3>
+<div class="do">สลับไปโน้ตบุ๊ก → รัน <code>flutter test</code> → เห็น "All tests passed!"</div>
+<div class="say">มี unit test 3 ตัว: hash รหัสผ่านแล้วตรวจได้, validation ชื่อผู้ใช้และรหัสผ่าน, และ CSV escape เครื่องหมายพิเศษถูกต้อง นอกจากนี้มีบันทึกการทดสอบด้วยมือ <span class="ph">N</span> รายการในฟอร์ม 3 เช่น ส่งฟอร์มว่าง กดส่งซ้ำ และส่งออกเดือนที่ไม่มีข้อมูล</div>
+
+<h3>คำถามที่อาจโดน</h3>
+<dl class="qa">
+  <dt>ถ้าแอดมินเปลี่ยนสถานะ ผู้แจ้งต้องปิดแอปก่อนไหมถึงจะเห็นแถบ</dt>
+  <dd>ไม่ต้อง แถบโหลดจำนวนใหม่ทุกครั้งที่หน้ารายการโหลด เช่น เปิดแอป ดึงลงเพื่อรีเฟรช หรือกลับจากหน้ารายละเอียด แต่ยังไม่ใช่ push notification เพราะข้อมูลอยู่ในเครื่องเดียว ถ้าจะส่งข้ามเครื่องต้องมี server และใช้ Firebase Cloud Messaging</dd>
+  <dt>BOM คืออะไร</dt>
+  <dd>อักขระ <code>U+FEFF</code> ที่ใส่หน้าไฟล์ บอกโปรแกรมว่าไฟล์นี้เป็น UTF-8 ถ้าไม่ใส่ Excel จะเดาเป็น encoding อื่น ภาษาไทยจะกลายเป็นตัวอักษรแปลกๆ</dd>
+  <dt>ทำไมแยก <code>buildCsv</code> เป็น static function</dt>
+  <dd>เพื่อให้เขียน unit test ได้โดยไม่ต้องเปิดฐานข้อมูลหรือเขียนไฟล์จริง ส่งรายการ Report เข้าไปแล้วตรวจข้อความที่ได้</dd>
+  <dt>หน้าสรุปผลอัปเดตเองไหมหลังมีเรื่องใหม่</dt>
+  <dd>อัปเดต เพราะหน้าแรกสร้างเฉพาะแท็บที่เลือก (<code>tabs[_tab]</code>) สลับมาแท็บนี้เมื่อไรก็โหลดจากฐานข้อมูลใหม่ ตอนแรกใช้ <code>IndexedStack</code> แล้วตัวเลขค้าง จึงเปลี่ยน</dd>
+  <p class="note live">คำถามเฉพาะหน้า: "เพิ่มคอลัมน์ในไฟล์ CSV" → เพิ่มชื่อคอลัมน์ในบรรทัดหัวตาราง และเพิ่มค่าในลิสต์ของแต่ละแถวใน <code>buildCsv</code> ให้ลำดับตรงกัน</p>
+</dl>
+
+<!-- ============================ CLOSING ============================ -->
+<h2 style="margin-top:18px">6. ปิด — สมาชิกคนที่ 1 <span class="time">≤ 1 นาที</span></h2>
+<div class="say">สรุปว่า NU Report ทำให้ผู้ใช้แจ้งปัญหาพร้อมรูปได้ ติดตามได้ว่าเรื่องไปถึงไหน เจ้าหน้าที่จัดการเรื่อง ประกาศข่าว และสรุปผลรายเดือนได้โดยไม่ต้องนับเอง ทำได้ครบ <span class="ph">6</span> ข้อ <span class="ph">ถ้ามีข้อที่ทำไม่ครบ ให้บอกตรงนี้ตามฟอร์ม 3</span> ขอบคุณครับ/ค่ะ</div>
+
+<div class="warn">
+  <b>ถ้ามีอะไรพังระหว่างสาธิต</b>
+  <ul>
+    <li>กล้องเปิดไม่ได้: เลือก "เลือกจากคลังรูป" แทน และพูดว่าแอปแจ้ง error ให้ตามที่ออกแบบไว้</li>
+    <li>แอปค้างหรือข้อมูลรก: ปิดแอปแล้วเปิดใหม่ ข้อมูลยังอยู่ ซึ่งแสดงว่า SQLite ทำงาน</li>
+    <li>ตอบคำถามไม่ได้: เกณฑ์ให้เวลาเรียบเรียง 30 วินาทีและเปิดโค้ดได้ ให้เปิดไฟล์ที่เกี่ยวข้องแล้วอธิบายจากโค้ดตรงหน้า</li>
+  </ul>
+</div>
+
+</body>
+</html>
