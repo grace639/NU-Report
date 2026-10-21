@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../db/announcement_dao.dart';
 import '../models/announcement.dart';
 import '../providers/auth_provider.dart';
+import '../services/link_guard.dart';
 import '../theme/app_theme.dart';
 import '../widgets/feedback.dart';
 
@@ -205,13 +206,22 @@ class _AnnouncementDialogState extends State<_AnnouncementDialog> {
               controller: _title,
               maxLength: 80,
               decoration: const InputDecoration(labelText: 'หัวข้อ *'),
-              validator: (v) => (v?.trim().isEmpty ?? true) ? 'กรุณากรอกหัวข้อ' : null,
+              validator: (v) => (v?.trim().isEmpty ?? true)
+                  ? 'กรุณากรอกหัวข้อ'
+                  : LinkGuard.onlyTrustedLinks(v),
             ),
             TextFormField(
               controller: _body,
               maxLines: 4,
-              decoration: const InputDecoration(labelText: 'เนื้อหา *', alignLabelWithHint: true),
-              validator: (v) => (v?.trim().isEmpty ?? true) ? 'กรุณากรอกเนื้อหา' : null,
+              decoration: const InputDecoration(
+                labelText: 'เนื้อหา *',
+                alignLabelWithHint: true,
+                helperText: 'ใส่ลิงก์ได้เฉพาะเว็บ nu.ac.th',
+              ),
+              // แอดมินใส่ลิงก์ได้ แต่ต้องเป็นเว็บของมหาวิทยาลัยเท่านั้น (LinkGuard)
+              validator: (v) => (v?.trim().isEmpty ?? true)
+                  ? 'กรุณากรอกเนื้อหา'
+                  : LinkGuard.onlyTrustedLinks(v),
             ),
             CheckboxListTile(
               contentPadding: EdgeInsets.zero,

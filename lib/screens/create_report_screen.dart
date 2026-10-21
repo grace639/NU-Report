@@ -10,6 +10,7 @@ import '../models/report.dart';
 import '../providers/auth_provider.dart';
 import '../providers/report_provider.dart';
 import '../services/image_service.dart';
+import '../services/link_guard.dart';
 import '../theme/app_theme.dart';
 import '../widgets/feedback.dart';
 
@@ -120,7 +121,8 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
               controller: _title,
               maxLength: 80,
               decoration: const InputDecoration(labelText: 'หัวข้อ *'),
-              validator: (v) => (v?.trim().isEmpty ?? true) ? 'กรุณากรอกหัวข้อ' : null,
+              // ช่องว่าง -> เตือนให้กรอก, มีลิงก์ -> เตือนว่าห้ามใส่ลิงก์ (LinkGuard)
+              validator: (v) => (v?.trim().isEmpty ?? true) ? 'กรุณากรอกหัวข้อ' : LinkGuard.noLinks(v),
             ),
             const SizedBox(height: 8),
             DropdownButtonFormField<int>(
@@ -138,7 +140,8 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                 hintText: 'เช่น อาคาร SC2 ชั้น 3 ห้อง 301',
                 prefixIcon: Icon(Icons.place),
               ),
-              validator: (v) => (v?.trim().isEmpty ?? true) ? 'กรุณาระบุสถานที่' : null,
+              validator: (v) =>
+                  (v?.trim().isEmpty ?? true) ? 'กรุณาระบุสถานที่' : LinkGuard.noLinks(v),
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -146,8 +149,9 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
               maxLines: 4,
               maxLength: 500,
               decoration: const InputDecoration(labelText: 'รายละเอียด *', alignLabelWithHint: true),
-              validator: (v) =>
-                  (v?.trim().length ?? 0) < 10 ? 'อธิบายอย่างน้อย 10 ตัวอักษร' : null,
+              validator: (v) => (v?.trim().length ?? 0) < 10
+                  ? 'อธิบายอย่างน้อย 10 ตัวอักษร'
+                  : LinkGuard.noLinks(v),
             ),
             const SizedBox(height: 16),
             FilledButton.icon(

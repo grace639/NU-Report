@@ -51,6 +51,7 @@ class AppTheme {
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
+        errorMaxLines: 2, // ข้อความเตือนยาวให้ขึ้นบรรทัดใหม่ ไม่ถูกตัดเป็น ...
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
