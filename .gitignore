@@ -51,3 +51,6 @@ Screenshot*.png
 
 # ตั้งค่าเฉพาะเครื่อง
 .claude/
+
+# ภาพหลักฐานเก็บแยกใน Google Drive
+docs/evidence/
